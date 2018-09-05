@@ -144,10 +144,17 @@ func Sort(inFilename string) (outFilename string) {
 
 	bytes := make([]byte, 4)
 	readFiles := make([]*os.File, 0, len(tmpFileSlice))
+	chunkSize := optimalBufferSize
+	chunk := make([]byte, 0, chunkSize+4)
 	for len(mapNumberFiles) > 0 {
 		min, _ := minMaxKey(mapNumberFiles)
 		for _, file = range mapNumberFiles[min] {
 			binary.BigEndian.PutUint32(bytes, uint32(min))
+			chunk = append(chunk, bytes...)
+			if len(chunk) >= chunkSize {
+				file.Write(chunk)
+				chunk = chunk[:0]
+			}
 			outFile.Write(bytes)
 			readFiles = append(readFiles, file)
 		}
@@ -170,6 +177,7 @@ func Sort(inFilename string) (outFilename string) {
 		}
 		readFiles = readFiles[:0]
 	}
+	file.Write(chunk)
 
 	return outFilename
 }

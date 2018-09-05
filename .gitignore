@@ -2,3 +2,7 @@
 *.swo
 
 config.yaml
+
+chaos-*
+out-*
+tmp-*
