@@ -1,0 +1,2 @@
+#!/bin/sh
+/usr/local/bin/time -f '%Uu %Ss %er %MkB %Pcput %Fmajor %Rminor %C' "$@"
