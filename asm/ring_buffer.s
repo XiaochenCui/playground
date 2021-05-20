@@ -429,6 +429,8 @@
 	0x001c 00028 (xiaochen.go:77)	LEAQ	32(SP), BP
 	0x0021 00033 (xiaochen.go:77)	FUNCDATA	$0, gclocals·e6397a44f8e1b6e77d0f200b4fba5269(SB)
 	0x0021 00033 (xiaochen.go:77)	FUNCDATA	$1, gclocals·69c1753bd5f81501d95132d08af04464(SB)
+
+	// 78: if b.end && b.readOffset == b.endOffset {
 	0x0021 00033 (xiaochen.go:78)	MOVQ	"".b+48(SP), DX
 	0x0026 00038 (xiaochen.go:78)	CMPB	24(DX), $0  // 24: RingBuffer.end
 	0x002a 00042 (xiaochen.go:78)	JEQ	58
@@ -455,7 +457,11 @@
 	0x0063 00099 (xiaochen.go:83)	MOVQ	40(CX), SI	// SI: len(b.list)
 	0x0067 00103 (xiaochen.go:83)	CMPQ	DX, SI	// DX: index
 	0x006a 00106 (xiaochen.go:83)	JCC	336 		// 判断 index error
+
+    // 82: index := b.readOffset % b.mask
 	0x0070 00112 (xiaochen.go:82)	MOVQ	DX, "".index+16(SP)
+
+	// 83: v := b.list[index]
 	0x0075 00117 (xiaochen.go:83)	MOVQ	DX, AX
 	0x0078 00120 (xiaochen.go:83)	SHLQ	$4, DX
 	0x007c 00124 (xiaochen.go:83)	MOVQ	DX, ""..autotmp_7+24(SP)
