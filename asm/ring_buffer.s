@@ -409,11 +409,20 @@
 	rel 187+4 t=8 runtime.panicdivide+0
 	rel 193+4 t=8 runtime.morestack_noctxt+0
 "".(*RingBuffer).Get STEXT size=368 args=0x18 locals=0x28 funcid=0x0
+    ---------------------- header start  -------------------------
 	0x0000 00000 (xiaochen.go:77)	TEXT	"".(*RingBuffer).Get(SB), ABIInternal, $40-24
+    // 40: stack frame size
+    // 栈帧大小(局部变量+可能需要的额外调用函数的参数空间的总大小，但不包括调用其它函数时的 ret address 的大小)
+    // 24: argument size (optional)
+    // 参数及返回值大小
+    // 24 = unsafe.Sizeof(buffer.list)
+
 	0x0000 00000 (xiaochen.go:77)	MOVQ	(TLS), CX
 	0x0009 00009 (xiaochen.go:77)	CMPQ	SP, 16(CX)
 	0x000d 00013 (xiaochen.go:77)	PCDATA	$0, $-2
 	0x000d 00013 (xiaochen.go:77)	JLS	358
+    ---------------------- header end -------------------------
+
 	0x0013 00019 (xiaochen.go:77)	PCDATA	$0, $-1
 	0x0013 00019 (xiaochen.go:77)	SUBQ	$40, SP
 	0x0017 00023 (xiaochen.go:77)	MOVQ	BP, 32(SP)
