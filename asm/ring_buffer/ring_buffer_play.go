@@ -8,6 +8,7 @@ import (
 
 func main() {
 	buffer := NewRingBuffer(42)
+	buffer.list = make([]interface{}, 1, 2)
 	fmt.Println(unsafe.Offsetof(buffer.mask))       // 0
 	fmt.Println(unsafe.Offsetof(buffer.readOffset)) // 8
 	fmt.Println(unsafe.Offsetof(buffer.endOffset))  // 16
@@ -17,6 +18,10 @@ func main() {
 	fmt.Println(unsafe.Sizeof(*buffer))             // 56
 	fmt.Println(unsafe.Sizeof(buffer.end))          // 1
 	fmt.Println(unsafe.Sizeof(buffer.list))         // 24
+
+	// 56: unsafe.Sizeof(*buffer)
+	dataBytes := (*[56]byte)(unsafe.Pointer(buffer))
+	fmt.Printf("Bytes are %#v\n", dataBytes)
 }
 
 var (

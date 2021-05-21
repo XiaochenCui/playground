@@ -443,7 +443,7 @@
 	0x003e 00062 (xiaochen.go:82)	MOVQ	(DX), BX	// 0 - 8: RingBuffer.mask
 	0x0041 00065 (xiaochen.go:82)	TESTQ	BX, BX		// 判断是否除0
 	0x0044 00068 (xiaochen.go:82)	JEQ	352
-	0x004a 00074 (xiaochen.go:77)	MOVQ	DX, CX
+	0x004a 00074 (xiaochen.go:77)	MOVQ	DX, CX		// CX: b
 	0x004d 00077 (xiaochen.go:82)	CMPQ	BX, $-1
 	0x0051 00081 (xiaochen.go:82)	JEQ	90
 	0x0053 00083 (xiaochen.go:82)	CQO
@@ -453,10 +453,10 @@
 	0x005d 00093 (xiaochen.go:82)	XORL	DX, DX
 
 	// 83: v := b.list[index]
-	0x005f 00095 (xiaochen.go:83)	MOVQ	32(CX), BX
-	0x0063 00099 (xiaochen.go:83)	MOVQ	40(CX), SI	// SI: len(b.list)
-	0x0067 00103 (xiaochen.go:83)	CMPQ	DX, SI	// DX: index
-	0x006a 00106 (xiaochen.go:83)	JCC	336 		// 判断 index error
+	0x005f 00095 (xiaochen.go:83)	MOVQ	32(CX), BX	// BX: len(b.list)
+	0x0063 00099 (xiaochen.go:83)	MOVQ	40(CX), SI	// SI: cap(b.list)
+	0x0067 00103 (xiaochen.go:83)	CMPQ	DX, SI		// DX: index
+	0x006a 00106 (xiaochen.go:83)	JCC	336 			// 判断 index error
 
     // 82: index := b.readOffset % b.mask
 	0x0070 00112 (xiaochen.go:82)	MOVQ	DX, "".index+16(SP)
