@@ -1,0 +1,81 @@
+@!@!@STARTMSG 2262:0 @!@!@
+TLC2 Version 2.20 of Day Month 20?? (rev: 5aa8b19)
+@!@!@ENDMSG 2262 @!@!@
+@!@!@STARTMSG 2187:0 @!@!@
+Running breadth-first search Model-Checking with fp 23 and seed -1511927690105295175 with 4 workers on 8 cores with 3641MB heap and 64MB offheap memory [pid: 1381] (Mac OS X 10.16 x86_64, AdoptOpenJDK 14.0.1 x86_64, NoopFPSet, DiskStateQueue).
+@!@!@ENDMSG 2187 @!@!@
+@!@!@STARTMSG 2220:0 @!@!@
+Starting SANY...
+@!@!@ENDMSG 2220 @!@!@
+Parsing file /Users/xiaochencui/code/playground/tla+/Practical TLA+/chapter-1/wire_1.toolbox/Model_1/MC.tla
+Parsing file /Users/xiaochencui/code/playground/tla+/Practical TLA+/chapter-1/wire_1.toolbox/Model_1/wire.tla
+Parsing file /Applications/TLA+ Toolbox.app/Contents/Eclipse/plugins/org.lamport.tlatools_1.0.0.202408081942/tla2sany/StandardModules/TLC.tla
+Parsing file /Applications/TLA+ Toolbox.app/Contents/Eclipse/plugins/org.lamport.tlatools_1.0.0.202408081942/tla2sany/StandardModules/Integers.tla
+Parsing file /Applications/TLA+ Toolbox.app/Contents/Eclipse/plugins/org.lamport.tlatools_1.0.0.202408081942/tla2sany/StandardModules/FiniteSets.tla
+Parsing file /Applications/TLA+ Toolbox.app/Contents/Eclipse/plugins/org.lamport.tlatools_1.0.0.202408081942/tla2sany/StandardModules/Naturals.tla
+Parsing file /Applications/TLA+ Toolbox.app/Contents/Eclipse/plugins/org.lamport.tlatools_1.0.0.202408081942/tla2sany/StandardModules/Sequences.tla
+Semantic processing of module Naturals
+Semantic processing of module Integers
+Semantic processing of module Sequences
+Semantic processing of module FiniteSets
+Semantic processing of module wire
+Semantic processing of module TLC
+Semantic processing of module MC
+@!@!@STARTMSG 2219:0 @!@!@
+SANY finished.
+@!@!@ENDMSG 2219 @!@!@
+@!@!@STARTMSG 2185:0 @!@!@
+Starting... (2024-08-11 11:56:04)
+@!@!@ENDMSG 2185 @!@!@
+<< "$!@$!@$!@$!@$!",
+   { <<1, 10, 100>>,
+     <<1, 10, 101>>,
+     <<1, 10, 102>>,
+     <<1, 11, 100>>,
+     <<1, 11, 101>>,
+     <<1, 11, 102>>,
+     <<1, 12, 100>>,
+     <<1, 12, 101>>,
+     <<1, 12, 102>>,
+     <<2, 10, 100>>,
+     <<2, 10, 101>>,
+     <<2, 10, 102>>,
+     <<2, 11, 100>>,
+     <<2, 11, 101>>,
+     <<2, 11, 102>>,
+     <<2, 12, 100>>,
+     <<2, 12, 101>>,
+     <<2, 12, 102>>,
+     <<3, 10, 100>>,
+     <<3, 10, 101>>,
+     <<3, 10, 102>>,
+     <<3, 11, 100>>,
+     <<3, 11, 101>>,
+     <<3, 11, 102>>,
+     <<3, 12, 100>>,
+     <<3, 12, 101>>,
+     <<3, 12, 102>> } >>
+@!@!@STARTMSG 2189:0 @!@!@
+Computing initial states...
+@!@!@ENDMSG 2189 @!@!@
+@!@!@STARTMSG 2190:0 @!@!@
+Finished computing initial states: 0 distinct states generated at 2024-08-11 11:56:04.
+@!@!@ENDMSG 2190 @!@!@
+@!@!@STARTMSG 2193:0 @!@!@
+Model checking completed. No error has been found.
+  Estimates of the probability that TLC did not check all reachable states
+  because two distinct states had the same fingerprint:
+  calculated (optimistic):  val = 0.0
+@!@!@ENDMSG 2193 @!@!@
+@!@!@STARTMSG 2200:0 @!@!@
+Progress(1) at 2024-08-11 11:56:04: 0 states generated (0 s/min), 0 distinct states found (0 ds/min), 0 states left on queue.
+@!@!@ENDMSG 2200 @!@!@
+@!@!@STARTMSG 2199:0 @!@!@
+0 states generated, 0 distinct states found, 0 states left on queue.
+@!@!@ENDMSG 2199 @!@!@
+@!@!@STARTMSG 2194:0 @!@!@
+The depth of the complete state graph search is 0.
+@!@!@ENDMSG 2194 @!@!@
+@!@!@STARTMSG 2186:0 @!@!@
+Finished in 985ms at (2024-08-11 11:56:04)
+@!@!@ENDMSG 2186 @!@!@

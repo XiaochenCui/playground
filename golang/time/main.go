@@ -7,6 +7,16 @@ import (
 )
 
 func main() {
+	TimeInfinity := time.Unix(9224318016000, 0).UTC()
+	TimeInfinitySec := float64(TimeInfinity.Unix())
+	TimeNegativeInfinity := time.Unix(-210866803201, 999999000).UTC()
+	TimeNegativeInfinitySec := float64(TimeNegativeInfinity.Unix())
+
+	fmt.Printf("TimeInfinity: %v\n", TimeInfinity)
+	fmt.Printf("TimeInfinitySec: %f\n", TimeInfinitySec)
+	fmt.Printf("TimeNegativeInfinity: %v\n", TimeNegativeInfinity)
+	fmt.Printf("TimeNegativeInfinitySec: %f\n", TimeNegativeInfinitySec)
+
 	var tm time.Time
 
 	tm = time.Now()

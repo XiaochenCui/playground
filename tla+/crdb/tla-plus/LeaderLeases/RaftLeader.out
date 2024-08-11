@@ -1,0 +1,51 @@
+@!@!@STARTMSG 2262:0 @!@!@
+TLC2 Version 2.16 of 31 December 2020 (rev: cdddf55)
+@!@!@ENDMSG 2262 @!@!@
+@!@!@STARTMSG 2187:0 @!@!@
+Running breadth-first search Model-Checking with fp 84 and seed -2313218976199876202 with 1 worker on 24 cores with 14272MB heap and 64MB offheap memory [pid: 24211] (Linux 6.8.0-40-generic amd64, Eclipse Adoptium 21.0.4 x86_64, MSBDiskFPSet, DiskStateQueue).
+@!@!@ENDMSG 2187 @!@!@
+@!@!@STARTMSG 2220:0 @!@!@
+Starting SANY...
+@!@!@ENDMSG 2220 @!@!@
+Parsing file /home/xiaochen/code/cockroach/docs/tla-plus/LeaderLeases/RaftLeader.tla
+Parsing file /tmp/TLC.tla
+Parsing file /tmp/Integers.tla
+Parsing file /tmp/FiniteSets.tla
+Parsing file /tmp/Sequences.tla
+Parsing file /tmp/SequencesExt.tla
+Parsing file /tmp/Naturals.tla
+Parsing file /tmp/FiniteSetsExt.tla
+Parsing file /tmp/Folds.tla
+Parsing file /tmp/Functions.tla
+Semantic processing of module Naturals
+Semantic processing of module Sequences
+Semantic processing of module FiniteSets
+Semantic processing of module TLC
+Semantic processing of module Integers
+Semantic processing of module Folds
+Semantic processing of module Functions
+Semantic processing of module FiniteSetsExt
+Semantic processing of module SequencesExt
+Semantic processing of module RaftLeader
+@!@!@STARTMSG 2219:0 @!@!@
+SANY finished.
+@!@!@ENDMSG 2219 @!@!@
+@!@!@STARTMSG 2185:0 @!@!@
+Starting... (2024-08-11 15:32:49)
+@!@!@ENDMSG 2185 @!@!@
+@!@!@STARTMSG 2168:0 @!@!@
+Loading SequencesExt!ReplaceFirstSubSeq operator override from jar:file:/home/xiaochen/Downloads/CommunityModules-deps.jar!/tlc2/overrides/SequencesExt.class with signature: <Java Method: public static tlc2.value.impl.Value tlc2.overrides.SequencesExt.replaceFirstSubSeq(tlc2.tool.impl.Tool,tla2sany.semantic.ExprOrOpArgNode[],tlc2.util.Context,tlc2.tool.TLCState,tlc2.tool.TLCState,int,tlc2.tool.coverage.CostModel)>.
+@!@!@ENDMSG 2168 @!@!@
+@!@!@STARTMSG 2168:0 @!@!@
+Loading SequencesExt!ReplaceAllSubSeqs operator override from jar:file:/home/xiaochen/Downloads/CommunityModules-deps.jar!/tlc2/overrides/SequencesExt.class with signature: <Java Method: public static tlc2.value.impl.Value tlc2.overrides.SequencesExt.replaceAllSubSeq(tlc2.tool.impl.Tool,tla2sany.semantic.ExprOrOpArgNode[],tlc2.util.Context,tlc2.tool.TLCState,tlc2.tool.TLCState,int,tlc2.tool.coverage.CostModel)>.
+@!@!@ENDMSG 2168 @!@!@
+@!@!@STARTMSG 1000:1 @!@!@
+TLC threw an unexpected exception.
+This was probably caused by an error in the spec or model.
+See the User Output or TLC Console for clues to what happened.
+The exception was a java.lang.NoClassDefFoundError
+: tlc2/value/impl/KSubsetValue
+@!@!@ENDMSG 1000 @!@!@
+@!@!@STARTMSG 2186:0 @!@!@
+Finished in 325ms at (2024-08-11 15:32:49)
+@!@!@ENDMSG 2186 @!@!@
