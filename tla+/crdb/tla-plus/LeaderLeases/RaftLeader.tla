@@ -400,8 +400,8 @@ begin TickLoop:
   end while;
 end process;
 end algorithm; *)
-\* BEGIN TRANSLATION (chksum(pcal) = "f6c58190" /\ chksum(tla) = "53a6c574")
-VARIABLES raft, network, pc
+\* BEGIN TRANSLATION (chksum(pcal) = "a4b0aa8e" /\ chksum(tla) = "d566ae")
+VARIABLES pc, raft, network
 
 (* define statement *)
 Symmetry == Permutations(Nodes)
@@ -453,7 +453,7 @@ LeaderExclusivity == \A i, j \in Nodes :
 
 VARIABLES canVote, toSend, msg
 
-vars == << raft, network, pc, canVote, toSend, msg >>
+vars == << pc, raft, network, canVote, toSend, msg >>
 
 ProcSet == (Nodes)
 
