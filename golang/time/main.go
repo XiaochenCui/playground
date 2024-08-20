@@ -3,10 +3,20 @@ package main
 import (
 	"fmt"
 	"math"
+	"strconv"
+	"strings"
 	"time"
 )
 
 func main() {
+	dismantleTime("294277-01-01 00:00:00 +0000 UTC")
+	dismantleTime("294277-01-01 23:59:59.999999 +0000 UTC")
+
+	dismantleTime("-4714-11-23 23:59:59.999999 +0000 UTC")
+	dismantleTime("-4714-11-23 00:00:00 +0000 UTC")
+
+	return
+
 	TimeInfinity := time.Unix(9224318016000, 0).UTC()
 	TimeInfinitySec := float64(TimeInfinity.Unix())
 	TimeNegativeInfinity := time.Unix(-210866803201, 999999000).UTC()
@@ -57,6 +67,84 @@ func main() {
 
 	getBinary(time.Unix(9286454318454, 775807000).UTC())
 	getBinary(time.Unix(9224318721654, 775807000).UTC())
+}
+
+// Given a time.Time or a string, demonstrate:
+//   - How to construct it using the "time.Unix" api.
+func dismantleTime(v interface{}) {
+	switch t := v.(type) {
+	case string:
+		formats := []string{
+			"2006-01-02 15:04:05.999999999 -0700 MST",
+		}
+
+		for _, format := range formats {
+			tm, err := time.Parse(format, t)
+			if err != nil {
+				continue
+			}
+			dismantleTime(tm)
+			return
+		}
+
+		tm, err := parseSpecialYear(t)
+		if err == nil {
+			dismantleTime(tm)
+			return
+		}
+		fmt.Printf("err: %v\n", err)
+
+		panic("invalid time format")
+
+	case time.Time:
+		if t.Location() != time.UTC {
+			panic("time must be in UTC")
+		}
+
+		unix := t.Unix()
+		nano := t.UnixNano()
+		nano -= unix * 1000000000
+
+		fmt.Printf("t: %v\n", t)
+		fmt.Printf("t = time.Unix(%d, %d).UTC()\n", unix, nano)
+
+		// verify
+		t2 := time.Unix(unix, nano).UTC()
+		if t2 != t {
+			panic("verification failed")
+		}
+	}
+}
+
+func parseSpecialYear(timeStr string) (t time.Time, err error) {
+	// Split the string to extract the year and the rest
+	var year, rest string
+	if strings.HasPrefix(timeStr, "-") {
+		parts := strings.SplitN(timeStr, "-", 3)
+		year = "-" + parts[1]
+		rest = parts[2]
+	} else {
+		parts := strings.SplitN(timeStr, "-", 2)
+		year = parts[0]
+		rest = parts[1]
+	}
+
+	// Parse the rest of the time string
+	suffix, err := time.Parse("01-02 15:04:05 -0700 MST", rest)
+	if err != nil {
+		return time.Time{}, err
+	}
+
+	yearInt, err := strconv.Atoi(year)
+	if err != nil {
+		return time.Time{}, err
+	}
+
+	t = time.Date(yearInt, suffix.Month(), suffix.Day(), suffix.Hour(), suffix.Minute(), suffix.Second(), suffix.Nanosecond(), suffix.Location())
+
+	fmt.Println("Year:", year)
+	fmt.Println("Parsed time:", t)
+	return t, err
 }
 
 func getBinaryStr(tStr string) {
