@@ -9,3 +9,11 @@ tmp-*
 
 out
 *.svg
+
+target/
+
+Cargo.lock
+
+.vagrant/
+
+build/
