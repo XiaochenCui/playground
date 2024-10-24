@@ -1,7 +1,7 @@
 # Variables
 CXX = g++
 CXXFLAGS = -std=c++20 -Wall
-TARGET = iterator
+TARGET = build/iterator
 SRC = iterator.cpp
 
 # Default rule: compile and run

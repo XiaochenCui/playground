@@ -2,7 +2,13 @@
 #include <set>
 #include <map>
 
+void printSeparator() {
+    std::cout << std::string(40, '-') << std::endl;
+}
+
 void demonstrateSet() {
+    printSeparator();
+
     std::set<int> s = {10, 20, 30, 40, 50};
     std::cout << "Set: ";
     for (auto it = s.begin(); it != s.end(); ++it) {
@@ -25,7 +31,9 @@ void demonstrateSet() {
 }
 
 void demonstrateMultiset() {
-    std::multiset<int> ms = {10, 20, 30, 30, 40, 50};
+    printSeparator();
+
+    std::multiset<int> ms = {10, 10, 20, 20, 30, 30, 40, 40, 50, 50};
     std::cout << "Multiset: ";
     for (auto it = ms.begin(); it != ms.end(); ++it) {
         std::cout << *it << " ";
@@ -47,6 +55,8 @@ void demonstrateMultiset() {
 }
 
 void demonstrateMap() {
+    printSeparator();
+
     std::map<int, std::string> m = {{1, "one"}, {2, "two"}, {3, "three"}, {4, "four"}};
     std::cout << "Map: ";
     for (auto it = m.begin(); it != m.end(); ++it) {
@@ -69,6 +79,8 @@ void demonstrateMap() {
 }
 
 void demonstrateMultimap() {
+    printSeparator();
+
     std::multimap<int, std::string> mm = {{1, "one"}, {2, "two"}, {3, "three"}, {3, "tres"}, {4, "four"}};
     std::cout << "Multimap: ";
     for (auto it = mm.begin(); it != mm.end(); ++it) {
@@ -91,6 +103,8 @@ void demonstrateMultimap() {
 }
 
 void findAndRemove(std::set<int>& s, int value) {
+    printSeparator();
+
     auto it = s.find(value);
     if (it != s.end()) {
         std::cout << "Found value " << *it << " in set, removing it.\n";
@@ -101,6 +115,8 @@ void findAndRemove(std::set<int>& s, int value) {
 }
 
 void findAndRemove(std::map<int, std::string>& m, int key) {
+    printSeparator();
+
     auto it = m.find(key);
     if (it != m.end()) {
         std::cout << "Found key " << it->first << " in map, removing it.\n";
