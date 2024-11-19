@@ -15,14 +15,14 @@ all: $(TARGET)
 
 # Rule to create the static library
 $(TARGET): $(OBJ)
-    $(AR) rcs $@ $^
+	$(AR) rcs $@ $^
 
 # Rule to compile source file into object file
 %.o: %.cc
-    $(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 # Clean up generated files
 clean:
-    rm -f $(OBJ) $(TARGET)
+	rm -f $(OBJ) $(TARGET)
 
 .PHONY: all clean
