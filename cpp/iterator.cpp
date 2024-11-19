@@ -47,9 +47,14 @@ void demonstrateMultiset() {
     std::cout << "Max value in multiset: " << *maxIt << std::endl;
 
     // Remove first and last values
-    ms.erase(minIt);   // Removes the minimum value
-    ms.erase(maxIt);   // Removes the maximum value
+    ms.erase(minIt);   // Removes the minimum value, note that it only removes one occurrence
+    ms.erase(maxIt);   // Removes the maximum value, note that it only removes one occurrence
     std::cout << "Multiset after removing min and max: ";
+    for (const auto &elem : ms) std::cout << elem << " ";
+    std::cout << std::endl;
+
+    ms.erase(30); // Removes all occurrences of 30
+    std::cout << "Multiset after removing all occurrences of 30: ";
     for (const auto &elem : ms) std::cout << elem << " ";
     std::cout << std::endl;
 }
