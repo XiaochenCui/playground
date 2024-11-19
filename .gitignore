@@ -17,3 +17,23 @@ Cargo.lock
 .vagrant/
 
 build/
+
+# ============================================================================ #
+# bazel
+# ============================================================================ #
+
+# The lock file stores exact versions of dependencies to ensure consistent builds.
+# Keep this file in source control for now.
+# See:
+# - https://bazel.build/external/lockfile
+# MODULE.bazel.lock
+
+# These directories contain the output of Bazel builds.
+bazel-*
+
+# ============================================================================ #
+# build results
+# ============================================================================ #
+
+*.o
+*.a

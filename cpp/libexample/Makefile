@@ -8,18 +8,13 @@ SRC = example.cc
 OBJ = $(SRC:.cc=.o)
 
 # Define the target library
-TARGET_DIR = ./lib
-TARGET = $(TARGET_DIR)/libexample.a
+TARGET = libexample.a
 
 # Default target
 all: $(TARGET)
 
-# Ensure the target directory exists
-$(TARGET_DIR):
-	mkdir -p $(TARGET_DIR)
-
 # Rule to create the static library
-$(TARGET): $(OBJ) | $(TARGET_DIR)
+$(TARGET): $(OBJ)
 	$(AR) rcs $@ $^
 
 # Rule to compile source file into object file
