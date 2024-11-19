@@ -1,4 +1,4 @@
-workspace(name = "smalldb")
+workspace(name = "play")
 
 # ================================================================================ #
 # http_archive
@@ -10,15 +10,11 @@ load("@bazel_tools//tools/build_defs/repo:local.bzl", "new_local_repository")
 # ================================================================================ #
 # rules_foreign_cc lets us build C/C++ projects using cmake/make/etc.
 # ================================================================================ #
-# http_archive(
-#     name = "rules_foreign_cc",
-#     sha256 = "a2e6fb56e649c1ee79703e99aa0c9d13c6cc53c8d7a0cbb8797ab2888bbc99a3",
-#     strip_prefix = "rules_foreign_cc-0.12.0",
-#     url = "https://github.com/bazelbuild/rules_foreign_cc/releases/download/0.12.0/rules_foreign_cc-0.12.0.tar.gz",
-# )
-local_repository(
+http_archive(
     name = "rules_foreign_cc",
-    path = "/home/xiaochen/code/rules_foreign_cc",
+    sha256 = "a2e6fb56e649c1ee79703e99aa0c9d13c6cc53c8d7a0cbb8797ab2888bbc99a3",
+    strip_prefix = "rules_foreign_cc-0.12.0",
+    url = "https://github.com/bazelbuild/rules_foreign_cc/releases/download/0.12.0/rules_foreign_cc-0.12.0.tar.gz",
 )
 
 load("@rules_foreign_cc//foreign_cc:repositories.bzl", "rules_foreign_cc_dependencies")
@@ -53,48 +49,8 @@ filegroup(
 )
 """
 
-http_archive(
-    name = "arrow",
-    build_file_content = _ALL_CONTENT,
-    strip_prefix = "arrow-apache-arrow-18.0.0",
-    urls = ["https://github.com/apache/arrow/archive/refs/tags/apache-arrow-18.0.0.tar.gz"],
-)
-
-http_archive(
-    name = "rocksdb",
-    build_file_content = _ALL_CONTENT,
-    strip_prefix = "rocksdb-9.7.4",
-    urls = ["https://github.com/facebook/rocksdb/archive/refs/tags/v9.7.4.tar.gz"],
-)
-
-http_archive(
-    name = "spdlog",
-    build_file_content = _ALL_CONTENT,
-    strip_prefix = "spdlog-1.15.0",
-    urls = ["https://github.com/gabime/spdlog/archive/refs/tags/v1.15.0.tar.gz"],
-)
-
-http_archive(
-    name = "postgres",
-    build_file_content = _ALL_CONTENT,
-    strip_prefix = "postgres-REL_17_1",
-    urls = ["https://github.com/postgres/postgres/archive/refs/tags/REL_17_1.tar.gz"],
-)
-
-http_archive(
-    name = "libpg_query",
-    build_file_content = _ALL_CONTENT,
-    strip_prefix = "libpg_query-17-6.0.0",
-    urls = ["https://github.com/pganalyze/libpg_query/archive/refs/tags/17-6.0.0.tar.gz"],
-)
-
-# local_repository(
-#     name = "libexample",
-#     path = "/home/xiaochen/code/playground/cpp/libexample",
-# )
-
 new_local_repository(
     name = "libexample",
     build_file_content = _ALL_CONTENT,
-    path = "/home/xiaochen/code/playground/cpp/libexample",
+    path = "../libexample",
 )
