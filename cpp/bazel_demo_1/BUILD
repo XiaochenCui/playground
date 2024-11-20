@@ -11,8 +11,3 @@ make(
     targets = [""],  # Specify the targets since the default targets include "install".
     visibility = ["//visibility:public"],
 )
-
-config_setting(
-    name = "debug",
-    values = {"compilation_mode": "dbg"},
-)
