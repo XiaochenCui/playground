@@ -16,7 +16,6 @@ import streamlit as st
 
 import os
 
-traily_api_key = "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"
 
 
 def main():
@@ -191,6 +190,22 @@ class GraphState(TypedDict):
     generation: str
     documents: List[str]
 
+    def retrieve(state):
+        """
+        Retrieve documents
+
+        Args:
+            state (dict): The current graph state
+
+        Returns:
+            state (dict): New key added to state, documents, that contains retrieved documents
+        """
+        print ("---RETRIEVE---")
+        question = state["question"]
+
+        # Retrieval
+        documents = retriever.get_relevant_documents (question)
+        return {"documents": documents, "question": question}
 
 if __name__ == "__main__":
     main()
