@@ -1,3 +1,4 @@
+from typing import List, TypedDict
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.prompts import PromptTemplate
 from langchain import hub
@@ -174,6 +175,21 @@ def main():
     result = answer_grader.invoke({"question": question, "generation": generation})
 
     web_search_tool = TavilySearchResults(k=3, traily_api_key=traily_api_key)
+
+
+class GraphState(TypedDict):
+    """
+    Represents the state of our graph.
+
+    Attributes:
+        question: question
+        generation: LLM generation
+        documents: list of documents
+    """
+
+    question: str
+    generation: str
+    documents: List[str]
 
 
 if __name__ == "__main__":
