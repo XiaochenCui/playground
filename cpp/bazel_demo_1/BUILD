@@ -5,9 +5,16 @@ make(
     args = [
         "-j",
     ],
+    # targets = [""],  # Specify the targets since the default targets include "install".
+    env = {
+        "DESTDIR": "build",
+        "prefix": "",
+    },
+    # postfix_script = "set -x\npwd\nls\nexit 88\n",
+    # postfix_script = "set -x\npwd\n",
+    # install_prefix = ".",
     lib_source = "@libexample//:all",
-    out_lib_dir = "",  # Override the default lib directory "lib".
+    out_lib_dir = "./build/lib/",  # Override the default lib directory "lib".
     out_static_libs = ["libexample.a"],
-    targets = [""],  # Specify the targets since the default targets include "install".
     visibility = ["//visibility:public"],
 )
