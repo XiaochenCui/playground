@@ -18,7 +18,7 @@ def compare():
 
 def get_args(compiler: str, lang: str) -> List[str]:
     gcc_output, _ = xiaochen_py.run_command(
-        f"echo | {compiler} -x{lang} ++ -v -",
+        f"echo | {compiler} -x{lang} -v -",
         capture_tty=True,
         raise_on_failure=False,
         stream_output=False,
@@ -33,9 +33,9 @@ def get_args(compiler: str, lang: str) -> List[str]:
     print(f">>> default args: {arg_line}")
 
     args = arg_line.split(" ")
-    for i, arg in enumerate(args):
-        print(f"{i}: {arg}")
-    args = line.split(" ")
+    # for i, arg in enumerate(args):
+    #     print(f"{i}: {arg}")
+    # args = line.split(" ")
     return args[2:]
 
 
