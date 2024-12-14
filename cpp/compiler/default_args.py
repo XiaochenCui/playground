@@ -7,7 +7,10 @@ def compare():
     clang = "clang++-20"
 
     gcc_output, _ = xiaochen_py.run_command(
-        f"echo | {gcc} -xc++ -v -", raise_on_failure=False, stream_output=False
+        f"echo | {gcc} -xc++ -v -",
+        capture_tty=True,
+        raise_on_failure=False,
+        stream_output=False,
     )
     # print(gcc_output)
 
