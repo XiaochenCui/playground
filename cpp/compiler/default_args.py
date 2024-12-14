@@ -12,7 +12,9 @@ def compare():
         raise_on_failure=False,
         stream_output=False,
     )
-    # print(gcc_output)
+    print("--- output start ---")
+    print(gcc_output)
+    print("--- output end ---")
 
     lines = gcc_output.decode("utf-8").split("\n")
     arg_start = False
