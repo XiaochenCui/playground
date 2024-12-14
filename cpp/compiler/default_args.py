@@ -23,13 +23,14 @@ def compare():
             arg_start = True
             arg_line = line
             continue
+
         if arg_start:
             if line.startswith(" "):
                 arg_line += line
             else:
                 arg_start = False
                 break
-    print(f"GCC: {arg_line}")
+    print(f">>> default args: {arg_line}")
 
 
 if __name__ == "__main__":
