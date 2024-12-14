@@ -1,0 +1,6 @@
+Script started on 2024-12-14 10:36:08-08:00 [COMMAND="./print.py" TERM="xterm-256color" TTY="/dev/pts/12" COLUMNS="-1" LINES="-1"]
+this goes to stdout
+this goes to stderr
+This goes directly to the console!
+
+Script done on 2024-12-14 10:36:08-08:00 [COMMAND_EXIT_CODE="0"]
