@@ -1,9 +1,14 @@
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
+#include <string.h>
 
 void swap(void *first, void *second, size_t size) {
-  void *temp = malloc(size);
+  void *temp;
+  temp = malloc(size);
+  if (temp == NULL) {
+    fprintf(stderr, "Memory allocation failed\n");
+    exit(1);
+  }
   memcpy(temp, first, size);
   memcpy(first, second, size);
   memcpy(second, temp, size);
