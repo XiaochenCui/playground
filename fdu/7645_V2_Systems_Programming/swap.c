@@ -1,5 +1,12 @@
 #include <stdio.h>
 
+void swap(int *first, int *second) {
+    int temp;
+    temp = *first;
+    *first = *second;
+    *second = temp;
+}
+
 int main() {
     int first, second, temp;
 
@@ -10,5 +17,8 @@ int main() {
     temp = first;
     first = second;
     second = temp;
+    printf("AFTER swap: first = %d, second = %d\n", first, second);
+
+    swap(&first, &second);
     printf("AFTER swap: first = %d, second = %d\n", first, second);
 }
