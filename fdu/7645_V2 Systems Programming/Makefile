@@ -1,5 +1,6 @@
-run: hello
-	./hello
+run: build/hello
+	./build/hello
 
-hello: hello.c
-	gcc -o hello hello.c
+build/hello: hello.c
+	mkdir -p build
+	gcc -o build/hello hello.c
