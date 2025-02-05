@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 void swapIntegers(int *first, int *second) {
   int temp;
