@@ -1,4 +1,4 @@
-run: build/hello build/swap build/practice_1a
+run: build/hello build/swap build/practice_1a build/practice_1b
 	# ./build/hello
 	# ./build/swap
 	# ./build/practice_1a
