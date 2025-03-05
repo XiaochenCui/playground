@@ -1,8 +1,8 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <dirent.h>
-#include <string.h>
-#include <sys/stat.h>
+#include <stdio.h>   // printf, fprintf, perror
+#include <stdlib.h>  // EXIT_FAILURE, EXIT_SUCCESS
+#include <dirent.h>  // DIR, struct dirent, opendir, readdir, closedir
+#include <string.h>  // strcmp
+#include <sys/stat.h> // struct stat, stat
 
 void list_contents(const char *path, int level) {
     struct dirent *entry;
