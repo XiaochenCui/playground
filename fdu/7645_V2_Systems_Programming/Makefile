@@ -1,11 +1,12 @@
-run: build/hello build/swap build/practice_1a build/practice_1b build/practice_2
+run: build/hello build/swap build/practice_1a build/practice_1b build/showallcontents build/process
 	# ./build/hello
 	# ./build/swap
 	# ./build/practice_1a
 	# ./build/practice_1b
 	# ./build/copy ./text/a.txt ./text/b.txt -a
 	# ./build/cat ./text/a.txt ./text/c.txt
-	./build/practice_2 .
+	# ./build/showallcontents .
+	./build/process
 
 build/hello: hello.c
 	mkdir -p build
@@ -25,6 +26,10 @@ build/practice_1b: ./practice_1b/modify.c ./practice_1b/copy.c ./practice_1b/cat
 	gcc -o build/copy ./practice_1b/copy.c
 	gcc -o build/cat ./practice_1b/cat.c
 
-build/practice_2: ./practice_2/showallcontents.c
+build/showallcontents: ./practice_2/showallcontents.c
 	mkdir -p build
-	gcc -o build/practice_2 ./practice_2/showallcontents.c
+	gcc -o build/showallcontents ./practice_2/showallcontents.c
+
+build/process: ./practice_2/process.c
+	mkdir -p build
+	gcc -o build/process ./practice_2/process.c
