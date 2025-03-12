@@ -23,7 +23,8 @@ void list_contents(const char *path, int level) {
         printf("%s\n", entry->d_name);
         
         char full_path[1024];
-        snprintf(full_path, sizeof(full_path), "%s/%s", path, entry->d_name);
+        // snprintf(full_path, sizeof(full_path), "%s/%s", path, entry->d_name);
+        sprintf(full_path, "%s/%s", path, entry->d_name);
         
         struct stat path_stat;
         stat(full_path, &path_stat);

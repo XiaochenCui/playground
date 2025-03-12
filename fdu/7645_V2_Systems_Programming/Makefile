@@ -5,8 +5,8 @@ run: build/hello build/swap build/practice_1a build/practice_1b build/showallcon
 	# ./build/practice_1b
 	# ./build/copy ./text/a.txt ./text/b.txt -a
 	# ./build/cat ./text/a.txt ./text/c.txt
-	# ./build/showallcontents .
-	./build/process
+	./build/showallcontents .
+	# ./build/process
 
 build/hello: hello.c
 	mkdir -p build
