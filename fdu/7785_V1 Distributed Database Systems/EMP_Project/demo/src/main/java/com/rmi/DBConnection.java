@@ -1,4 +1,4 @@
-package com.example;
+package com.rmi;
 
 /**
  * Provides the Connection to the database
