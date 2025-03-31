@@ -1,10 +1,16 @@
 package com.rmi;
 
+import java.io.Serializable;
+
 /**
  * A Plain Old Jave Object (POJO) representing one employee record in the
  * database
+ * 
+ * Update:
+ * - Added Serializable interface to allow object serialization.
  */
-public class EMP {
+public class EMP implements Serializable {
+
     private String eno;
     private String ename;
     private String title;

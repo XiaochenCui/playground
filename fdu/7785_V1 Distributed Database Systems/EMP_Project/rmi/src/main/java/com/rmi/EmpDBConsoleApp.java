@@ -1,24 +1,40 @@
 package com.rmi;
 
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.util.List;
 import java.util.Scanner;
-import java.sql.SQLException;
 
 /**
- * This is the app main class
- * It uses the EMPDAO class to get the data from the database
- * 
+ * This is the app main class It uses the EMPDAO class to get the data from the
+ * database
+ *
  */
 public class EmpDBConsoleApp {
+
     static Scanner scanner = new Scanner(System.in);
-    static EMPDAO empDAO = new EMPDAO();
+
+    // Replace local "EMPDAO" with remote "RemoteEMP"
+    static RemoteEMP empDAO;
+
     // ANSI escape code constants for text colors
     static final String RESET = "\u001B[0m";
     static final String GREEN = "\u001B[32m";
     static final String RED = "\u001B[31m";
 
     // Application main
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws RemoteException {
+        String host = (args.length < 1) ? null : args[0];
+        try {
+            // init registry and lookup the remote object
+            Registry registry = LocateRegistry.getRegistry(host);
+            empDAO = (RemoteEMP) registry.lookup("EMP");
+        } catch (Exception e) {
+            System.err.println("Client exception: " + e.toString());
+            e.printStackTrace();
+        }
+
         String choice = "";
         while (!choice.equals("6")) {
             System.out.println("""
@@ -35,18 +51,25 @@ public class EmpDBConsoleApp {
                     Enter your choice: """);
             choice = scanner.nextLine();
             switch (choice) {
-                case "1" -> showAllEmployees();
-                case "2" -> findEmployeeByNo();
-                case "3" -> addNewEmployee();
-                case "4" -> deleteEmployee();
-                case "5" -> updateEmployee();
-                case "6" -> System.exit(0);
-                default -> System.out.println("Enter a choice between 1 and 6");
+                case "1" ->
+                    showAllEmployees();
+                case "2" ->
+                    findEmployeeByNo();
+                case "3" ->
+                    addNewEmployee();
+                case "4" ->
+                    deleteEmployee();
+                case "5" ->
+                    updateEmployee();
+                case "6" ->
+                    System.exit(0);
+                default ->
+                    System.out.println("Enter a choice between 1 and 6");
             }
         }
     }
 
-    public static void showAllEmployees() throws SQLException {
+    public static void showAllEmployees() throws RemoteException {
         // get all employees using the DAO
         List<EMP> empList = empDAO.getAllEmployees();
 
@@ -56,7 +79,7 @@ public class EmpDBConsoleApp {
         }
     }
 
-    public static void findEmployeeByNo() throws SQLException {
+    public static void findEmployeeByNo() throws RemoteException {
         System.out.println("Enter employee No. to find:");
         String eno = scanner.nextLine();
 
@@ -68,16 +91,14 @@ public class EmpDBConsoleApp {
         }
     }
 
-    public static void addNewEmployee() throws SQLException {
+    public static void addNewEmployee() throws RemoteException {
         System.out.println("Enter new employee No.:");
         String eno = scanner.nextLine();
 
         System.out.println("Enter new employee name:");
         String ename = scanner.nextLine();
-
         System.out.println("Enter new employee title:");
         String title = scanner.nextLine();
-
         int addStatus = empDAO.addNewEmployee(eno, ename, title);
         if (addStatus == 1) {
             System.out.println(GREEN + eno + " " + ename + " Added successfully" + RESET);
@@ -86,7 +107,7 @@ public class EmpDBConsoleApp {
         }
     }
 
-    public static void deleteEmployee() throws SQLException {
+    public static void deleteEmployee() throws RemoteException {
         System.out.println("Enter employee No. to delete:");
         String eno = scanner.nextLine();
 
@@ -94,7 +115,6 @@ public class EmpDBConsoleApp {
             System.out.println(RED + "No employee with No.: " + eno + RESET);
             return;
         }
-
         int delStatus = empDAO.deleteEmployee(eno);
         if (delStatus == 1) {
             System.out.println(GREEN + eno + " deleted successfully" + RESET);
@@ -103,7 +123,7 @@ public class EmpDBConsoleApp {
         }
     }
 
-    public static void updateEmployee() throws SQLException {
+    public static void updateEmployee() throws RemoteException {
         System.out.println("Enter employee No. to update:");
         String eno = scanner.nextLine();
 
@@ -111,15 +131,11 @@ public class EmpDBConsoleApp {
             System.out.println(RED + "No employee with No.: " + eno + RESET);
             return;
         }
-
         System.out.println("Enter new employee name:");
         String ename = scanner.nextLine();
-
         System.out.println("Enter new employee title:");
         String title = scanner.nextLine();
-
         int updateStatus = empDAO.updateEmployee(eno, ename, title);
-
         if (updateStatus == 1) {
             System.out.println(GREEN + eno + " " + ename + " updated successfully" + RESET);
         } else {

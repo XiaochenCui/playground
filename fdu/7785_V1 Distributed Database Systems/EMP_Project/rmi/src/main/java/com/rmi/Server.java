@@ -12,6 +12,47 @@ public class Server implements RemoteEMP {
     public Server() {
     }
 
+    public EMP findEmployeeById(String eno) {
+        try {
+            EMP emp = empDAO.findEmployeeById(eno);
+            return emp;
+        } catch (Exception e) {
+            System.err.println("Server exception: " + e.toString());
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public int addNewEmployee(String eno, String ename, String title) {
+        try {
+            return empDAO.addNewEmployee(eno, ename, title);
+        } catch (Exception e) {
+            System.err.println("Server exception: " + e.toString());
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+    public int updateEmployee(String eno, String ename, String title) {
+        try {
+            return empDAO.updateEmployee(eno, ename, title);
+        } catch (Exception e) {
+            System.err.println("Server exception: " + e.toString());
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+    public int deleteEmployee(String eno) {
+        try {
+            return empDAO.deleteEmployee(eno);
+        } catch (Exception e) {
+            System.err.println("Server exception: " + e.toString());
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
     public List<EMP> getAllEmployees() {
         try {
             List<EMP> empList = empDAO.getAllEmployees();
@@ -34,6 +75,8 @@ public class Server implements RemoteEMP {
             registry.bind("EMP", stub);
 
             System.err.println("Server ready");
+
+            Thread.currentThread().join();
         } catch (Exception e) {
             System.err.println("Server exception: " + e.toString());
             e.printStackTrace();
