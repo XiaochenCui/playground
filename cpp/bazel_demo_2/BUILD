@@ -23,18 +23,6 @@ config_setting(
     values = {"compilation_mode": "dbg"},
 )
 
-# ====================================================================================== #
-# custom toolchains
-# ====================================================================================== #
-bazel_dep(
-    name = "platforms",
-    version = "0.0.10",
-)
-
-register_toolchains(
-    "//toolchain:xc_toolchain_clang20",
-)
-
 cc_binary(
     name = "log",
     srcs = ["log.cc"],
