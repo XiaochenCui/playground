@@ -3,14 +3,24 @@ package com.rmi;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.List;
 
 public class Server implements RemoteEMP {
+
+    static EMPDAO empDAO = new EMPDAO();
 
     public Server() {
     }
 
-    public String sayHello() {
-        return "Hello, world!";
+    public List<EMP> getAllEmployees() {
+        try {
+            List<EMP> empList = empDAO.getAllEmployees();
+            return empList;
+        } catch (Exception e) {
+            System.err.println("Server exception: " + e.toString());
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public static void main(String args[]) {

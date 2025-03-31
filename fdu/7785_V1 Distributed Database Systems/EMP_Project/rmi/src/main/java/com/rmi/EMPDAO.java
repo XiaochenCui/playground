@@ -1,13 +1,19 @@
 package com.rmi;
 
-import java.sql.*;
-import java.util.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * This class is a DAO (Data Access Object) - Use JDBC API
- * It encapsulates all the database operations for the EMP table
+ * This class is a DAO (Data Access Object) - Use JDBC API It encapsulates all
+ * the database operations for the EMP table
  */
 public class EMPDAO {
+
     public EMP findEmployeeById(String eno) throws SQLException {
         Connection conn = DBConnection.getConnection();
         String querySQL = "SELECT * FROM EMP WHERE ENO=?;";
