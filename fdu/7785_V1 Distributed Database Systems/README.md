@@ -1,3 +1,8 @@
+# Team Members
+
+- Xiaochen Cui (2101390)
+- Hao Chen (2099356)
+
 # Demo
 
 ## Compile the Demo
