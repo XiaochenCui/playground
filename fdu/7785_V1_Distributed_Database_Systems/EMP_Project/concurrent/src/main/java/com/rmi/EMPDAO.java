@@ -58,8 +58,8 @@ public class EMPDAO {
             // } catch (InterruptedException e) {
             //     e.printStackTrace();
             // }
-
             pstmt.close();
+            conn.commit(); // manual commit
             // conn.close();
         } catch (SQLException se) {
             // If there is any error.
@@ -129,14 +129,10 @@ public class EMPDAO {
             // } catch (InterruptedException e) {
             //     e.printStackTrace();
             // }
-
             // close all the db resources
             rs.close();
             stmt.close();
-            // conn.close();
-
-            // If there is no error.
-            conn.commit(); // manual commit
+            conn.commit();
         } catch (SQLException se) {
             // If there is any error.
             conn.rollback(); // rollback transaction

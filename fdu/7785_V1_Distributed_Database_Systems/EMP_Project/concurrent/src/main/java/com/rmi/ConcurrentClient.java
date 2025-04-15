@@ -19,6 +19,8 @@ public class ConcurrentClient {
     static final String GREEN = "\u001B[32m";
     static final String RED = "\u001B[31m";
 
+    static final int sleepSeconds = 0; // seconds to sleep for the transaction
+
     // Application main
     public static void main(String[] args) throws RemoteException {
         String host = (args.length < 1) ? null : args[0];
@@ -30,8 +32,6 @@ public class ConcurrentClient {
             System.err.println("Client exception: " + e.toString());
             e.printStackTrace();
         }
-
-        int sleepSeconds = 0; // seconds to sleep for the transaction
 
         // Create a thread for showAllEmployees
         Thread showAllEmployeesThread = new Thread(() -> {
@@ -53,13 +53,17 @@ public class ConcurrentClient {
             }
         });
 
-        int delStatus = empDAO.deleteEmployee("E123");
+        sequential(addNewEmployeeThread, showAllEmployeesThread);
+    }
 
+    public static void sequential(Thread addNewEmployeeThread, Thread showAllEmployeesThread) {
         try {
-            addNewEmployeeThread.start();
-            showAllEmployeesThread.start();
+            int delStatus = empDAO.deleteEmployee("E123");
 
+            addNewEmployeeThread.start();
             addNewEmployeeThread.join();
+
+            showAllEmployeesThread.start();
             showAllEmployeesThread.join();
         } catch (Exception e) {
         }
