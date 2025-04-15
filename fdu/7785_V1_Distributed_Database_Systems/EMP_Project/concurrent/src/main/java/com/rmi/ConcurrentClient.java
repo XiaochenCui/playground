@@ -19,7 +19,7 @@ public class ConcurrentClient {
     static final String GREEN = "\u001B[32m";
     static final String RED = "\u001B[31m";
 
-    static final int sleepSeconds = 0; // seconds to sleep for the transaction
+    static volatile int sleepSeconds = 0; // seconds to sleep for the transaction
 
     // Application main
     public static void main(String[] args) throws RemoteException {
@@ -53,7 +53,8 @@ public class ConcurrentClient {
             }
         });
 
-        sequential(addNewEmployeeThread, showAllEmployeesThread);
+        // sequential(addNewEmployeeThread, showAllEmployeesThread);
+        addFirst(addNewEmployeeThread, showAllEmployeesThread);
     }
 
     public static void sequential(Thread addNewEmployeeThread, Thread showAllEmployeesThread) {
@@ -64,6 +65,22 @@ public class ConcurrentClient {
             addNewEmployeeThread.join();
 
             showAllEmployeesThread.start();
+            showAllEmployeesThread.join();
+        } catch (Exception e) {
+        }
+    }
+
+    public static void addFirst(Thread addNewEmployeeThread, Thread showAllEmployeesThread) {
+        try {
+            int delStatus = empDAO.deleteEmployee("E123");
+
+            sleepSeconds = 5; // seconds to sleep for the transaction
+            addNewEmployeeThread.start();
+
+            sleepSeconds = 0; // seconds to sleep for the transaction
+            showAllEmployeesThread.start();
+
+            addNewEmployeeThread.join();
             showAllEmployeesThread.join();
         } catch (Exception e) {
         }
