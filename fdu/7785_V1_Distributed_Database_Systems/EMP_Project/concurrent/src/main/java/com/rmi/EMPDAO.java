@@ -52,12 +52,12 @@ public class EMPDAO {
             pstmt.setString(3, title);
             insertStatus = pstmt.executeUpdate();
 
-            // Simulate a long-running transaction
-            try {
-                Thread.sleep(sleepSeconds * 1000); // sleep for the specified seconds
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            // // Simulate a long-running transaction
+            // try {
+            //     Thread.sleep(sleepSeconds * 1000); // sleep for the specified seconds
+            // } catch (InterruptedException e) {
+            //     e.printStackTrace();
+            // }
 
             pstmt.close();
             conn.close();
@@ -123,17 +123,17 @@ public class EMPDAO {
                 empList.add(emp);
             }
 
+            // // Simulate a long-running transaction
+            // try {
+            //     Thread.sleep(sleepSeconds * 1000); // sleep for the specified seconds
+            // } catch (InterruptedException e) {
+            //     e.printStackTrace();
+            // }
+
             // close all the db resources
             rs.close();
             stmt.close();
             conn.close();
-
-            // Simulate a long-running transaction
-            try {
-                Thread.sleep(sleepSeconds * 1000); // sleep for the specified seconds
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
 
             // If there is no error.
             conn.commit(); // manual commit
