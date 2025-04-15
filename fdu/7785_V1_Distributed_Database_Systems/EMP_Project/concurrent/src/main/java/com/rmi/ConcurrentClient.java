@@ -33,7 +33,15 @@ public class ConcurrentClient {
             e.printStackTrace();
         }
 
-        // Create a thread for showAllEmployees
+        System.out.println("run sequential (write -> write_commit -> read -> read_commit)");
+        sequential();
+        System.out.println("run readFirst (read -> write -> read_commit -> write_commit)");
+        readFirst();
+        System.out.println("run writeFirst (write -> read -> write_commit -> read_commit)");
+        writeFirst();
+    }
+
+    static Thread createReadThread() {
         Thread showAllEmployeesThread = new Thread(() -> {
             try {
                 showAllEmployees(sleepSeconds);
@@ -42,8 +50,10 @@ public class ConcurrentClient {
                 e.printStackTrace();
             }
         });
+        return showAllEmployeesThread;
+    }
 
-        // Create a thread for addNewEmployee
+    static Thread createWriteThread() {
         Thread addNewEmployeeThread = new Thread(() -> {
             try {
                 addNewEmployee(sleepSeconds);
@@ -52,12 +62,13 @@ public class ConcurrentClient {
                 e.printStackTrace();
             }
         });
-
-        // sequential(addNewEmployeeThread, showAllEmployeesThread);
-        addFirst(addNewEmployeeThread, showAllEmployeesThread);
+        return addNewEmployeeThread;
     }
 
-    public static void sequential(Thread addNewEmployeeThread, Thread showAllEmployeesThread) {
+    public static void sequential() {
+        Thread addNewEmployeeThread = createWriteThread();
+        Thread showAllEmployeesThread = createReadThread();
+
         try {
             int delStatus = empDAO.deleteEmployee("E123");
 
@@ -67,15 +78,51 @@ public class ConcurrentClient {
             showAllEmployeesThread.start();
             showAllEmployeesThread.join();
         } catch (Exception e) {
+            System.err.println("Error in sequential: " + e.toString());
         }
     }
 
-    public static void addFirst(Thread addNewEmployeeThread, Thread showAllEmployeesThread) {
+    /**
+     * Demonstrate:
+     *
+     * - The read action blocks the write action. (Due to isolation)
+     *
+     * - The read action doesn't see the write action. (Serializabl isolation
+     * prevents dirty reads)
+     */
+    public static void readFirst() {
+        Thread addNewEmployeeThread = createWriteThread();
+        Thread showAllEmployeesThread = createReadThread();
+
+        try {
+            int delStatus = empDAO.deleteEmployee("E123");
+
+            sleepSeconds = 5; // seconds to sleep for the transaction
+            showAllEmployeesThread.start();
+
+            Thread.sleep(1 * 1000); // sleep for the specified seconds
+
+            sleepSeconds = 0; // seconds to sleep for the transaction
+            addNewEmployeeThread.start();
+
+            addNewEmployeeThread.join();
+            showAllEmployeesThread.join();
+        } catch (Exception e) {
+            System.err.println("Error in readFirst: " + e.toString());
+        }
+    }
+
+    public static void writeFirst() {
+        Thread addNewEmployeeThread = createWriteThread();
+        Thread showAllEmployeesThread = createReadThread();
+
         try {
             int delStatus = empDAO.deleteEmployee("E123");
 
             sleepSeconds = 5; // seconds to sleep for the transaction
             addNewEmployeeThread.start();
+
+            Thread.sleep(1 * 1000); // sleep for the specified seconds
 
             sleepSeconds = 0; // seconds to sleep for the transaction
             showAllEmployeesThread.start();
@@ -83,6 +130,7 @@ public class ConcurrentClient {
             addNewEmployeeThread.join();
             showAllEmployeesThread.join();
         } catch (Exception e) {
+            System.err.println("Error in writeFirst: " + e.toString());
         }
     }
 
