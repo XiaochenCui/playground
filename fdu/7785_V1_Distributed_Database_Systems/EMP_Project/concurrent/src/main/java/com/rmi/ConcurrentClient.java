@@ -112,6 +112,14 @@ public class ConcurrentClient {
         }
     }
 
+    /**
+     * Demonstrate:
+     *
+     * - The write action doesn't block the read action.
+     *
+     * - The read action doesn't see the write action. (Serializabl isolation
+     * prevents prevents dirty reads)
+     */
     public static void writeFirst() {
         Thread addNewEmployeeThread = createWriteThread();
         Thread showAllEmployeesThread = createReadThread();
