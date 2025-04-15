@@ -31,7 +31,7 @@ public class ConcurrentClient {
             e.printStackTrace();
         }
 
-                // Create a thread for showAllEmployees
+        // Create a thread for showAllEmployees
         Thread showAllEmployeesThread = new Thread(() -> {
             try {
                 showAllEmployees();
@@ -56,8 +56,11 @@ public class ConcurrentClient {
         addNewEmployeeThread.start();
 
         // Wait for both threads to finish
-        showAllEmployeesThread.join();
-        addNewEmployeeThread.join();
+        try {
+            showAllEmployeesThread.join();
+            addNewEmployeeThread.join();
+        } catch (Exception e) {
+        }
     }
 
     public static void showAllEmployees() throws RemoteException {
