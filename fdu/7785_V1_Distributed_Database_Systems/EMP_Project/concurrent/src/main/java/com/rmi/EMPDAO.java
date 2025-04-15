@@ -60,7 +60,7 @@ public class EMPDAO {
             // }
 
             pstmt.close();
-            conn.close();
+            // conn.close();
         } catch (SQLException se) {
             // If there is any error.
             conn.rollback(); // rollback transaction
@@ -133,7 +133,7 @@ public class EMPDAO {
             // close all the db resources
             rs.close();
             stmt.close();
-            conn.close();
+            // conn.close();
 
             // If there is no error.
             conn.commit(); // manual commit
