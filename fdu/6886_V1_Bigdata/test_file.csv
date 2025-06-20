@@ -1,0 +1,10 @@
+Name,Department,Age,experience,salary
+AA,D1,25,1,70
+BB,D1,30,3,100
+CC,D2,35,4,110
+DD,D3,22,1,60
+EE,D2,,3,75
+,,,,
+FF,,44,3,73
+ZZ,D3,23,2,46
+KK,D4,,2,80
